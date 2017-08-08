@@ -113,7 +113,7 @@ To begin, we create a [GAConfiguration](javadoc/com/nm/ignite/gagrid/parameter/G
 ```          
  
 <a name="step2">Define the Gene and Chromosome</a> <br/><br/>
- Next, we define our [Gene](javadoc/com/nm/ignite/gagrid/Gene.html).  For our problem domain, an optimal solution is the phrase ***"HELLO WORLD**"*.  Since the discrete parts are letters, we use a Character to model our [Gene](javadoc\com\nm\ignite\gagrid\Gene). Next, we need to initialize a Gene pool of ***27*** [Gene](javadoc/com/nm/ignite/gagrid/Gene.html) objects utilizing Characters. The code snippet below depicts this process.
+ Next, we define our [Gene](javadoc/com/nm/ignite/gagrid/Gene.html).  For our problem domain, an optimal solution is the phrase ***"HELLO WORLD**"*.  Since the discrete parts are letters, we use a Character to model our [Gene](javadoc/com/nm/ignite/gagrid/Gene.html). Next, we need to initialize a Gene pool of ***27*** [Gene](javadoc/com/nm/ignite/gagrid/Gene.html) objects utilizing Characters. The code snippet below depicts this process.
  
 
  > NOTE: **GA Grid** utilizes the Gene pool to initialize a replicated Gene cache.
@@ -193,7 +193,7 @@ Next, we configure [GAConfiguration](javadoc/com/nm/ignite/gagrid/parameter/GACo
 ```
 
  
-<a name="step5">Implement terminate condition</a> <br/>
+<a name="step4">Define terminate condition</a> <br/>
 The next step is to specify a suitable terminate condition for **GA Grid**.  The terminate condition will vary 
 depending the problem domain.  For our use case, we want **GA Grid** to terminate when
 a Chromosome's fitness score equals 11.  We specify a terminate condition by implementing the [ITerminateCriteria](javadoc/com/nm/ignite/gagrid/parameter/ITerminateCriteria.html) interface which has a single method **isTerminateConditionMet()**. 
@@ -254,7 +254,8 @@ gaConfig.setTerminateCriteria(termCriteria);
 
 ```
 
-<a name="step3">Evolve the population</a> <br/>
+<a name="step5">Evolve the population</a> <br/>
+
 The final step is to initialize a [GAGrid](javadoc/com/nm/ignite/gagrid/GAGrid.html) instance using our [GAConfiguration](javadoc/com/nm/ignite/gagrid/parameter/GAConfiguration.html) and Ignite instances. Then we evolve the population by invoking
 [GAGrid.evolve()](javadoc/com/nm/ignite/gagrid/GAGrid.html).
 
@@ -330,7 +331,7 @@ Please see examples for additional help on using **GA Grid**.
 
 **Genetic Algorithm (GA)** is a method of solving optimization problems by simulating the process of biological evolution. A **GA** continuously enhances a population of potential solutions.  With each iteration, a **GA** selects the *'best fit'* individuals from the current population  to create offspring for the next generation. After subsequent generations, a **GA** will "evolve" the population toward an optimal solution.
 
-**Mutation** is the process where genes within a chromosomes are randomly updates to produce new characteristics.
+**Mutation** is the process where genes within a chromosomes are randomly updated to produce new characteristics.
 
 **Population** is the collection of potential solutions or Chromosomes.
 
