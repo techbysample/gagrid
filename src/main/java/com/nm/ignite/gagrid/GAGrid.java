@@ -1,7 +1,6 @@
 package com.nm.ignite.gagrid;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -48,7 +47,7 @@ public class GAGrid {
     private IgniteCache<Long, Chromosome> populationCache = null;
     private IgniteCache<Long, Gene> geneCache = null;
     private List<Long> populationKeys = new ArrayList();
-
+ 
     IgniteLogger igniteLogger = null;
 
     /**
@@ -61,8 +60,14 @@ public class GAGrid {
         this.config = config;
         this.ignite = ignite;
         this.igniteLogger = ignite.log();
+        
+       // Get/Create cache
         populationCache = this.ignite.getOrCreateCache(PopulationCacheConfig.populationCache());
+        populationCache.clear();
+        
+        // Get/Create cache
         geneCache = this.ignite.getOrCreateCache(GeneCacheConfig.geneCache());
+        geneCache.clear();
     }
 
     /**
@@ -79,6 +84,7 @@ public class GAGrid {
         initializeGenePopulation();
 
         intializePopulation();
+       
 
         // Calculate Fitness
         calculateFitness(this.populationKeys);
@@ -271,6 +277,7 @@ public class GAGrid {
             geneCache.put(gene.id(), gene);
         }
     }
+
 
     /**
      * initialize the population of Chromosomes based on GAConfiguration

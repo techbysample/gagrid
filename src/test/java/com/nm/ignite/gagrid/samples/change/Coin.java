@@ -41,4 +41,9 @@ public class Coin implements Serializable {
         this.coinType = coinType;
     }
 
+	@Override
+	public String toString() {
+		return "Coin [numberOfCoins=" + numberOfCoins + ", coinType=" + coinType + "]";
+	}
+
 }

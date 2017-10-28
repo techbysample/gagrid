@@ -9,21 +9,48 @@ import javax.cache.Cache.Entry;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
 import org.apache.ignite.cache.query.QueryCursor;
+import org.apache.ignite.cache.query.SqlFieldsQuery;
 import org.apache.ignite.cache.query.SqlQuery;
 
 import com.nm.ignite.gagrid.Chromosome;
 import com.nm.ignite.gagrid.Gene;
+import com.nm.ignite.gagrid.cache.PopulationCacheConfig;
+import com.nm.ignite.gagrid.parameter.GAConfiguration;
 import com.nm.ignite.gagrid.parameter.GAGridConstants;
 
 /**
  * 
- *  Helper routines
+ *  GA Grid Helper routines
  *  
  * @author turik.campbell
  *
  */
 public class GAGridUtils {
 
+	 /**
+	  *  Retrieve chromosomes
+	  *  
+	  * @param ignite
+	  * @param query
+	  * @return
+	  */
+	 public static List<Chromosome> getChromosomes(Ignite ignite, String query)
+	 {
+		 List<Chromosome> chromosomes = new ArrayList();
+		 
+         IgniteCache<Long, Chromosome> populationCache = ignite.getOrCreateCache(PopulationCacheConfig.populationCache());
+        
+         SqlQuery sql = new SqlQuery(Chromosome.class, query);
+
+         try (QueryCursor<Entry<Long, Chromosome>> cursor = populationCache.query(sql)) {
+             for (Entry<Long, Chromosome> e : cursor)
+           	  chromosomes.add(e.getValue());
+             }
+		 
+		 return chromosomes;
+	 }
+	 
+	 
     /**
      *  
      * @param ignite
@@ -53,6 +80,8 @@ public class GAGridUtils {
     }
     
     /**
+     * 
+     * Retrieve genes in order
      * 
      * @param ignite
      * @param chromosome

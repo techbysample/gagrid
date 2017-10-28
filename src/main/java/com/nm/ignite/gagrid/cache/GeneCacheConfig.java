@@ -3,9 +3,10 @@ package com.nm.ignite.gagrid.cache;
 import org.apache.ignite.cache.CacheMode;
 import org.apache.ignite.cache.CacheRebalanceMode;
 import org.apache.ignite.configuration.CacheConfiguration;
-import com.nm.ignite.gagrid.parameter.GAGridConstants;
-import com.nm.ignite.gagrid.Chromosome;
+
 import com.nm.ignite.gagrid.Gene;
+import com.nm.ignite.gagrid.functions.GAGridFunction;
+import com.nm.ignite.gagrid.parameter.GAGridConstants;
 
 /**
  * 
@@ -31,6 +32,7 @@ public class GeneCacheConfig {
         cfg.setRebalanceMode(CacheRebalanceMode.SYNC);
         cfg.setStatisticsEnabled(true);
         cfg.setBackups(1);
+        cfg.setSqlFunctionClasses(GAGridFunction.class);
         return cfg;
 
     }
