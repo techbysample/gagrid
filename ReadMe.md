@@ -8,7 +8,7 @@
 * <a href="#usageguide">Usage Guide</a>  <br/>
     - <a href="#startgagrid">Start GA Grid</a>  <br/>
 * <a href="#examples">Examples</a> 
-* <a href="#zeppelin">Apache Zeppelin Integration</a> 
+* <a href="#zeppelintegrat">Apache Zeppelin Integration</a> 
 * <a href="#glossary">Glossary</a>  <br/>
 
 
